@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Agenda de Contatos</title>
+</h:head>
+
+<h:body>
+    <h:form id="contatosForm">
+        <p:panel header="Adicionar Contato">
+            <p:panelGrid columns="2">
+
+                <p:outputLabel for="nome" value="Nome:" />
+                <p:inputText id="nome" value="#{contatosBean.novoContato.nome}" required="true" />
+
+                <p:outputLabel for="telefone" value="Telefone:" />
+                <p:inputText id="telefone" value="#{contatosBean.novoContato.telefone}" required="true" />
+
+                <p:commandButton value="Adicionar Contato" action="#{contatosBean.adicionarContato}"
+                                 update="tabelaContatos" />
+            </p:panelGrid>
+        </p:panel>
+        <p:panel header="Lista de Contatos">
+
+            <p:dataTable id="tabelaContatos" var="contato" value="#{contatosBean.listaContatos}"
+                         rowKey="#{contato.id}" selection="#{contatosBean.contatoSelecionado}"
+                         selectionMode="single">
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{contato.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{contato.nome}" />
+                </p:column>
+
+                <p:column headerText="Telefone">
+                    <h:outputText value="#{contato.telefone}" />
+                </p:column>
+
+                <p:column headerText="Excluir">
+                     <p:button value="Excluir" styleClass="ui-button-danger"/>
+                </p:column>
+
+            </p:dataTable>
+
+            <p:commandButton value="Remover Contato" action="#{contatosBean.removerContato}"
+                             update="tabelaContatos" rendered="#{not empty contatosBean.contatoSelecionado}" />
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>
