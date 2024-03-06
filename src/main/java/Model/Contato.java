@@ -1,10 +1,23 @@
 package Model;
 
-public class Contato {
+import jakarta.persistence.*;
 
+import java.io.Serializable;
+
+@Entity
+@Table
+public class Contato extends Object implements Serializable {
+    @Id
+    @GeneratedValue(
+            strategy = GenerationType.IDENTITY
+    )
+    @Column
     private Integer id;
+    @Column
     private String nome;
+    @Column
     private String email;
+    @Column
     private String telefone;
 
     public Integer getId() {

@@ -11,7 +11,31 @@ import java.util.List;
 @SessionScoped
 public class ContatoBean {
 
-    private List<Contato> contatos;
+    private Contato contato;
+
+    public Contato getContato() {
+        return contato;
+    }
+    public void setContato(Contato contato) {
+        this.contato = contato;
+    }
+
+    public String salvarContato() {
+        // lógica de salvar
+
+        return "Sucesso";
+    }
+
+    public String editarContato() {
+        // lógica de editar
+
+        return "Sucesso";
+    }
+
+    public void excluirContato() {
+        //lógica para excluir do banco
+    }
+
 
 
 }

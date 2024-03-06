@@ -12,7 +12,7 @@
 <h:body>
     <h1>Lista de Contatos</h1>
 
-    <p:dataTable var="contato" value="#{contatoBean.contatos}">
+    <p:dataTable var="contato" value="#{contatoBean.contato}">
         <p:column headerText="Nome">
             <h:outputText value="#{contato.nome}" />
         </p:column>
@@ -33,6 +33,7 @@
         </p:column>
     </p:dataTable>
 
-    <p:commandButton action="novoContato" value="Novo Contato" />
+    <p:commandButton type="button" action="novoContato"
+                     value="Novo Contato" />
 </h:body>
 </html>

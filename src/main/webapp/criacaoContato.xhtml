@@ -21,7 +21,7 @@
             <h:outputLabel for="telefone">Telefone:</h:outputLabel>
             <h:inputText id="telefone" value="#{contato.telefone}" required="true"/>
         </h:panelGrid>
-        <h:commandButton value="Salvar" action="#{contatoController.salvar}"/>
+        <h:commandButton value="Salvar" action="#{contatoBean.salvarContato()}"/>
     </h:form>
 </h:body>
 </html>
