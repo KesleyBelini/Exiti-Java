@@ -1,24 +1,37 @@
-package Model;
+package model;
 
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 
 @Entity
-@Table
-public class Contato extends Object implements Serializable {
+@Table(name = "contato")
+public class Contato implements Serializable {
+
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private Integer id;
+
+    @Basic(optional = false)
     @Column
     private String nome;
+
+    @Basic(optional = false)
     @Column
     private String email;
+
+    @Basic(optional = false)
     @Column
     private String telefone;
+
+
+    public Contato() {
+        /*
+        criando um construtor vazio
+        isso serve para que ele crie o objeto sem a necessidade de parametros, entre outras coisas...
+        */
+    }
 
     public Integer getId() {
         return id;
@@ -51,4 +64,6 @@ public class Contato extends Object implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
+
+
 }

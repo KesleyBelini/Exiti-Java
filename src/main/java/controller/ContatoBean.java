@@ -1,17 +1,16 @@
-package Controller;
+package controller;
 
-import Model.Contato;
+import model.Contato;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-import java.util.ArrayList;
-import java.util.List;
+import javax.faces.view.ViewScoped;
+import java.io.Serializable;
 
 @ManagedBean
-@SessionScoped
-public class ContatoBean {
+@ViewScoped
+public class ContatoBean implements Serializable {
 
-    private Contato contato;
+    private Contato contato = new Contato();
 
     public Contato getContato() {
         return contato;
