@@ -3,37 +3,66 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
-    <title>Lista de Contatos</title>
+    <title>Agenda de Contatos</title>
 </h:head>
 
 <h:body>
-    <h1>Lista de Contatos</h1>
+    <div class="card">
+        <h:form id="form">
 
-    <p:dataTable var="contato" value="#{contatoBean.contato}">
-        <p:column headerText="Nome">
-            <h:outputText value="#{contato.nome}" />
-        </p:column>
+                <h1>Criar novo contato</h1>
 
-        <p:column headerText="Email">
-            <h:outputText value="#{contato.email}" />
-        </p:column>
+                <p:panelGrid columns="2" styleClass="customPanelGrid" contentStyleClass="ui-fluid">
 
-        <p:column headerText="Telefone">
-            <h:outputText value="#{contato.telefone}" />
-        </p:column>
+                    <p:outputLabel for="nome" value="Nome:"/>
+                    <p:inputText id="nome" value="#{contatoBean.contato.nome}" required="true"/>
 
-        <p:column headerText="Ações">
-            <p:commandButton action="editarContato" value="Editar"
-                             icon="ui-icon-pencil" />
-            <p:commandButton action="excluirContato" value="Excluir"
-                             icon="ui-icon-trash" />
-        </p:column>
-    </p:dataTable>
+                    <p:outputLabel for="email" value="Email:"/>
+                    <p:inputText id="email" value="#{contatoBean.contato.email}" required="true"/>
 
-    <p:commandButton type="button" action="novoContato"
-                     value="Novo Contato" />
+                    <p:outputLabel for="telefone" value="Telefone"/>
+                    <p:inputText id="telefone" value="#{contatoBean.contato.telefone}" required="true"/>
+
+                </p:panelGrid>
+
+                    <p:commandButton type="button" action="#{contatoBean.salvarContato()}"
+                                     value="Novo Contato" />
+
+
+
+            <p:dataTable var="contato" value="#{contatoBean.contato}">
+                <f:facet name="header">
+                    Lista de contatos
+                </f:facet>
+
+                <p:column headerText="id">
+                    <h:outputText value="#{contato.id}" />
+                </p:column>
+
+                <p:column headerText="Nome">
+                    <h:outputText value="#{contato.nome}" />
+                </p:column>
+
+                <p:column headerText="Email">
+                    <h:outputText value="#{contato.email}" />
+                </p:column>
+
+                <p:column headerText="Telefone">
+                    <h:outputText value="#{contato.telefone}" />
+                </p:column>
+
+                <p:column headerText="Editar">
+                    <p:commandButton type="button" action="editarContato" value="Editar"/>
+                </p:column>
+
+                <p:column headerText="Excluir">
+                    <p:commandButton type="button" action="excluirContato" value="Excluir" styleClass="ui-button-danger"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </div>
 </h:body>
 </html>
