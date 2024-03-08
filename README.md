@@ -62,7 +62,7 @@ Transforma um objeto-relacional em um objeto Java simples(POJO), ou beans de ent
   
 ## Script do banco de dados
 ```sql
-create database projetoJava
+create database agenda
 create table contato
 (
     id       serial
