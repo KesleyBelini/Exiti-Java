@@ -1,12 +1,11 @@
 package controller;
 
 import dao.ContatoDAO;
-import jakarta.persistence.PostPersist;
 import model.Contato;
-import org.primefaces.util.Lazy;
 
+import javax.annotation.ManagedBean;
+import javax.enterprise.context.Dependent;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -14,33 +13,32 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@ManagedBean
 @ViewScoped
 @Named
+@ManagedBean
 public class ContatoBean implements Serializable {
-
     private Contato contato = new Contato();
     private List<Contato> listaContatos;
     @Inject
-    private ContatoDAO contatoDAO;
+    private ContatoDAO dao;
 
     public void listarContatos() {
-        listaContatos = ContatoDAO.listarContatos;
+        listaContatos = dao.listarContatos();
     }
 
     public void salvarContato() {
-        contatoDAO.salvarContato(contato);
+        dao.salvarContato(contato);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Contato salvo com sucesso!", null));
         contato = new Contato();
     }
 
     public void editarContato() {
-        contatoDAO.editarContato(contato);
+        dao.editarContato(contato);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Contato editado com sucesso!", null));
     }
 
     public void excluirContato() {
-        contatoDAO.excluirContato(contato);
+        dao.excluirContato(contato);
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Contato excluído com sucesso!", null));
     }
 

@@ -4,14 +4,15 @@ import jakarta.persistence.*;
 import jakarta.transaction.Transactional;
 import model.Contato;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class ContatoDAO {
-    public static List<Contato> listarContatos;
+public class ContatoDAO implements Serializable {
     @PersistenceContext
     private EntityManager entityManager;
     
-    public List<Contato> listarContatos(Contato contato) {
+    public List<Contato> listarContatos() {
         String jpql = "SELECT c FROM Contato c";
         TypedQuery<Contato> query = entityManager.createQuery(jpql, Contato.class);
         return query.getResultList();
@@ -29,8 +30,13 @@ public class ContatoDAO {
 
     @Transactional
     public void excluirContato(Contato contato) {
-        contato = entityManager.merge(contato);
-        entityManager.remove(contato);
+        try {
+            contato = entityManager.merge(contato);
+            entityManager.remove(contato);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Erro ao excluir o contato: " + e.getMessage(), e);
+        }
+
     }
 
     @Transactional
