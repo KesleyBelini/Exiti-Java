@@ -58,5 +58,21 @@ Transforma um objeto-relacional em um objeto Java simples(POJO), ou beans de ent
 
 ### PostgreSQL
 É um sistema de gerenciamento de banco de dados relacional e open-source.
-- Permite a inserção, armazenamento e  manipulação de dados, através de tabelas que se relacionam por meio de chaves estrangeiras(referencia a uma chave primária). 
+- Permite a inserção, armazenamento e  manipulação de dados, através de tabelas que se relacionam por meio de chaves estrangeiras(referencia a uma chave primária).
+  
+## Script do banco de dados
+```sql
+create database agenda
+create table contato
+(
+    id       serial
+        primary key,
+    email    varchar(255),
+    nome     varchar(255),
+    telefone varchar(255)
+);
+
+alter table contato
+    owner to exiti;
+```
 
